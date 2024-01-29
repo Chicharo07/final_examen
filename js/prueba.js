@@ -1,4 +1,3 @@
-
 let ip = document.getElementById("ip");
 let pais = document.getElementById("pais");
 let continente = document.getElementById("continente");
