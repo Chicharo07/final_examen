@@ -16,7 +16,23 @@
 
 <div class="container mt-4">
   <h2>Tabla de Características</h2>
-  <table class="table tabla-filas-alternas">
+
+  <!-- Formulario para ingresar información -->
+  <form id="formularioDatos">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="comida">Comida</label>
+        <input type="text" class="form-control" id="comida" placeholder="Ingrese la comida favorita">
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary" onclick="enviarDatos()">Enviar Datos</button>
+  </form>
+
+  <table class="table tabla-filas-alternas mt-4">
     <thead class="thead-dark">
       <tr>
         <th scope="col">IP</th>
@@ -36,7 +52,7 @@
         <td id="nombre">-</td>
         <td id="comida">-</td>
       </tr>
-      </tbody>
+    </tbody>
   </table>
 </div>
 
@@ -46,5 +62,35 @@
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="js/prueba.js"></script>
+
+<script>
+  // Función para enviar los datos a la API
+  function enviarDatos() {
+    // Obtener valores de los campos
+    var nombre = document.getElementById('nombre').value;
+    var comida = document.getElementById('comida').value;
+
+    // Construir objeto de datos
+    var datos = {
+      nombre: nombre,
+      comida: comida
+    };
+
+    // Enviar datos a la API utilizando Axios (o la librería de tu elección)
+    axios.post('https://tu-api.com/ruta', datos)
+      .then(function (response) {
+        // Manejar la respuesta de la API
+        console.log(response.data);
+
+        // Actualizar la tabla con los datos recibidos
+        document.getElementById('nombre').innerText = response.data.nombre;
+        document.getElementById('comida').innerText = response.data.comida;
+      })
+      .catch(function (error) {
+        // Manejar errores
+        console.error('Error al enviar datos:', error);
+      });
+  }
+</script>
 </body>
 </html>
