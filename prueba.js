@@ -1,4 +1,3 @@
-//alert ("Hola mundo");
 
 let ip = document.getElementById("ip");
 let pais = document.getElementById("pais");
